@@ -355,6 +355,83 @@
       display: none;
       margin-top: 1rem;
     }
+
+    /* ── Filter bar ── */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--paper-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 1rem;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover { border-color: var(--maroon-soft); color: var(--maroon); }
+
+    .filter-btn.active {
+      background: var(--maroon);
+      border-color: var(--maroon);
+      color: #fff;
+    }
+
+    .filter-count {
+      display: inline-block;
+      background: rgba(255,255,255,0.25);
+      border-radius: 10px;
+      padding: 0 0.4rem;
+      font-size: 0.75rem;
+      margin-left: 0.25rem;
+    }
+
+    .filter-btn:not(.active) .filter-count {
+      background: var(--paper-dark);
+      color: var(--text-light);
+    }
+
+    /* ── NEW badge ── */
+    .new-badge {
+      display: inline-block;
+      background: var(--maroon);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.1rem 0.45rem;
+      border-radius: 3px;
+      vertical-align: middle;
+      margin-left: 0.4rem;
+      text-transform: uppercase;
+    }
+
+    .mod-card.is-new {
+      border-color: #c9a0a8;
+      background: #fffaf9;
+    }
+
+    .mod-card.is-new .mod-icon {
+      background: #f5e8ea;
+    }
+
+    /* ── Empty state ── */
+    .empty-state {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -387,8 +464,14 @@
         <button id="download-all-btn" disabled>⬇ Download .zip</button>
       </div>
 
-      <div class="section-heading">Required Mods</div>
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">All Mods <span class="filter-count" id="count-all">—</span></button>
+        <button class="filter-btn" data-filter="new" onclick="setFilter('new', this)">Recently Added <span class="filter-count" id="count-new">—</span></button>
+      </div>
+
+      <div class="section-heading" id="list-heading">Required Mods</div>
       <div class="mod-list" id="mod-list"></div>
+      <div class="empty-state" id="empty-state">No recently added mods in the last 14 days.</div>
       <div id="error-msg">Failed to load <code>mods.json</code>. Make sure it exists in the repo root.</div>
     </div>
 
@@ -431,6 +514,8 @@
   <footer>Put downloaded .jar files into your <code>.minecraft/mods</code> folder &nbsp;·&nbsp; Forge 1.20.1</footer>
 
   <script>
+    const RECENT_DAYS = 14;
+
     function switchTab(name, btn) {
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -442,7 +527,52 @@
       return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     }
 
+    function isRecent(dateStr) {
+      if (!dateStr) return false;
+      const added = new Date(dateStr);
+      const cutoff = new Date();
+      cutoff.setDate(cutoff.getDate() - RECENT_DAYS);
+      return added >= cutoff;
+    }
+
     let serverIP = '';
+    let allMods = [];
+    let serverName = '';
+    let activeFilter = 'all';
+
+    function setFilter(filter, btn) {
+      activeFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter();
+    }
+
+    function applyFilter() {
+      const cards = document.querySelectorAll('.mod-card');
+      const empty = document.getElementById('empty-state');
+      const heading = document.getElementById('list-heading');
+      const dlBtn = document.getElementById('download-all-btn');
+      const dlLabel = dlBtn.querySelector ? dlBtn : dlBtn;
+
+      let visible = 0;
+      cards.forEach(card => {
+        const show = activeFilter === 'all' || card.dataset.recent === 'true';
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      const noResults = visible === 0;
+      empty.style.display = noResults ? 'block' : 'none';
+
+      if (activeFilter === 'new') {
+        heading.textContent = 'Recently Added';
+        dlBtn.textContent = '⬇ Download Recent (.zip)';
+      } else {
+        heading.textContent = 'Required Mods';
+        dlBtn.textContent = '⬇ Download All (.zip)';
+      }
+      dlBtn.disabled = noResults;
+    }
 
     function copyIP() {
       if (!serverIP) return;
@@ -465,11 +595,12 @@
         return;
       }
 
-      // Top bar
+      allMods = data.mods;
+      serverName = data.server_name;
+
       document.title = data.server_name + ' — Mods';
       document.getElementById('server-name-top').textContent = data.server_name;
 
-      // Server info tab
       serverIP = data.server_port && data.server_port !== '25565'
         ? data.server_ip + ':' + data.server_port
         : data.server_ip;
@@ -480,26 +611,32 @@
       document.getElementById('mod-count').textContent = data.mods.length;
       document.getElementById('last-updated').textContent = data.last_updated;
 
-      // Meta badges
+      const recentCount = data.mods.filter(m => isRecent(m.added)).length;
+
+      document.getElementById('count-all').textContent = data.mods.length;
+      document.getElementById('count-new').textContent = recentCount;
+
       const badges = document.getElementById('meta-badges');
       badges.innerHTML = `
         <div class="badge">MC <strong>${esc(data.minecraft_version)}</strong></div>
         <div class="badge">Forge <strong>${esc(data.forge_version)}</strong></div>
         <div class="badge">Updated <strong>${esc(data.last_updated)}</strong></div>
         <div class="badge"><strong>${data.mods.length}</strong> mods</div>
+        ${recentCount > 0 ? `<div class="badge" style="border-color:#c9a0a8;color:var(--maroon)"><strong>${recentCount}</strong> new this fortnight</div>` : ''}
       `;
 
-      // Mod list
       const list = document.getElementById('mod-list');
       for (const mod of data.mods) {
+        const recent = isRecent(mod.added);
         const card = document.createElement('div');
-        card.className = 'mod-card';
+        card.className = 'mod-card' + (recent ? ' is-new' : '');
+        card.dataset.recent = recent ? 'true' : 'false';
         card.innerHTML = `
           <div class="mod-icon">🧩</div>
           <div class="mod-info">
-            <div class="mod-name">${esc(mod.name)}</div>
+            <div class="mod-name">${esc(mod.name)}${recent ? '<span class="new-badge">New</span>' : ''}</div>
             <div class="mod-desc">${esc(mod.description || '')}</div>
-            <div class="mod-version">v${esc(mod.version)}</div>
+            <div class="mod-version">v${esc(mod.version)}${mod.added ? ' · added ' + esc(mod.added) : ''}</div>
           </div>
           <a class="dl-btn" href="mods/${esc(mod.filename)}" download>Download</a>
         `;
@@ -508,10 +645,16 @@
 
       const btn = document.getElementById('download-all-btn');
       btn.disabled = false;
-      btn.addEventListener('click', () => downloadAll(data.mods, data.server_name));
+      btn.addEventListener('click', () => {
+        const modsToZip = activeFilter === 'new'
+          ? allMods.filter(m => isRecent(m.added))
+          : allMods;
+        const zipName = activeFilter === 'new' ? serverName + '_new_mods' : serverName;
+        downloadAll(modsToZip, zipName);
+      });
     }
 
-    async function downloadAll(mods, serverName) {
+    async function downloadAll(mods, zipName) {
       const btn = document.getElementById('download-all-btn');
       const msg = document.getElementById('progress-msg');
       btn.disabled = true;
@@ -535,7 +678,7 @@
 
       msg.textContent = 'Building zip…';
       const content = await zip.generateAsync({ type: 'blob' });
-      saveAs(content, serverName.replace(/\s+/g, '_') + '_mods.zip');
+      saveAs(content, zipName.replace(/\s+/g, '_') + '.zip');
       msg.textContent = 'Done! Place the .jar files in your .minecraft/mods folder.';
       btn.disabled = false;
     }
