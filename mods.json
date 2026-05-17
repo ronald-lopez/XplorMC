@@ -22,10 +22,59 @@
       "added": "2026-05-17"
     },
     {
-      "name": "Biomes O' Plenty",
-      "filename": "BiomesOPlenty-forge-1.20.1-19.0.0.96.jar",
-      "version": "19.0.0.96",
-      "description": "Adds 50+ new biomes to world generation.",
+      "name": "Copycats+",
+      "filename": "copycats-3.0.7+mc.1.20.1-forge.jar",
+      "version": "3.0.7",
+      "description": "Adds blocks that copy the appearance of any other block.",
+      "added": "2026-05-17"
+    },
+    {
+      "name": "Corgilib",
+      "filename": "Corgilib-Forge-1.20.1-4.0.3.4.jar",
+      "version": "4.0.3.4",
+      "description": "Library mod — required by Oh The Biomes We've Gone.",
+      "added": "2026-05-17"
+    },
+    {
+      "name": "Create: Power Loader",
+      "filename": "create_power_loader-2.0.3-mc1.20.1.jar",
+      "version": "2.0.3",
+      "description": "Keeps chunks loaded while Create contraptions are running.",
+      "added": "2026-05-17"
+    },
+    {
+      "name": "Create: Deco",
+      "filename": "createdeco-2.0.3-1.20.1-forge.jar",
+      "version": "2.0.3",
+      "description": "Adds decorative blocks and furniture themed around Create's aesthetic.",
+      "added": "2026-05-17"
+    },
+    {
+      "name": "Create: Framed",
+      "filename": "createframed-1.7.1.jar",
+      "version": "1.7.1",
+      "description": "Adds framed blocks that copy the texture of any placed block.",
+      "added": "2026-05-17"
+    },
+    {
+      "name": "GeckoLib",
+      "filename": "geckolib-forge-1.20.1-4.8.3.jar",
+      "version": "4.8.3",
+      "description": "Library mod — enables custom animations for mobs and items.",
+      "added": "2026-05-17"
+    },
+    {
+      "name": "Oh The Biomes We've Gone",
+      "filename": "Oh-The-Biomes-Weve-Gone-Forge-1.7.4.jar",
+      "version": "1.7.4",
+      "description": "Adds over 80 unique biomes to world generation.",
+      "added": "2026-05-17"
+    },
+    {
+      "name": "Oh The Trees You'll Grow",
+      "filename": "Oh-The-Trees-Youll-Grow-forge-1.20.1-1.5.0.jar",
+      "version": "1.5.0",
+      "description": "Adds many new tree types and plant varieties.",
       "added": "2026-05-17"
     },
     {
