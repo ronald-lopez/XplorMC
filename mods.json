@@ -1,0 +1,17 @@
+{
+  "server_name": "XplorMC SMP",
+  "minecraft_version": "1.20.1",
+  "forge_version": "47.x.x",
+  "last_updated": "2026-05-17",
+  "server_ip": "play.example.com",
+  "server_port": "25565",
+  "server_description": "Our Forge 1.20.1 SMP. Whitelist only — ask an admin to get added.",
+  "mods": [
+    {
+      "name": "Example Mod",
+      "filename": "examplemod-1.0.0.jar",
+      "version": "1.0.0",
+      "description": "Replace this with a real mod. Put the .jar in the /mods folder and add an entry here."
+    }
+  ]
+}
