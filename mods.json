@@ -1,17 +1,251 @@
 {
   "server_name": "XplorMC SMP",
   "minecraft_version": "1.20.1",
-  "forge_version": "47.x.x",
+  "forge_version": "47.4.16",
   "last_updated": "2026-05-17",
-  "server_ip": "play.example.com",
+  "server_ip": "xplor.exaroton.me",
   "server_port": "25565",
-  "server_description": "Our Forge 1.20.1 SMP. Whitelist only — ask an admin to get added.",
+  "server_description": "Whitelist only — ask an admin to get added.",
   "mods": [
     {
-      "name": "Example Mod",
-      "filename": "examplemod-1.0.0.jar",
-      "version": "1.0.0",
-      "description": "Replace this with a real mod. Put the .jar in the /mods folder and add an entry here."
+      "name": "Anti Xray",
+      "filename": "antixray-forge-1.4.6+1.20.1.jar",
+      "version": "1.4.6",
+      "description": "Server-side mod that prevents X-ray hacking."
+    },
+    {
+      "name": "AppleSkin",
+      "filename": "appleskin-forge-mc1.20.1-2.5.1.jar",
+      "version": "2.5.1",
+      "description": "Shows hunger and saturation values on your HUD."
+    },
+    {
+      "name": "Biomes O' Plenty",
+      "filename": "BiomesOPlenty-forge-1.20.1-19.0.0.96.jar",
+      "version": "19.0.0.96",
+      "description": "Adds 50+ new biomes to world generation."
+    },
+    {
+      "name": "Botarium",
+      "filename": "botarium-forge-1.20.1-2.3.4.jar",
+      "version": "2.3.4",
+      "description": "Library mod — required by other mods."
+    },
+    {
+      "name": "Collective",
+      "filename": "collective-1.20.1-8.3.jar",
+      "version": "8.3",
+      "description": "Library mod — required by other mods."
+    },
+    {
+      "name": "CoroUtil",
+      "filename": "coroutil-forge-1.20.1-1.3.7.jar",
+      "version": "1.3.7",
+      "description": "Library mod — required by other mods."
+    },
+    {
+      "name": "Corpse",
+      "filename": "corpse-forge-1.20.1-1.0.21.jar",
+      "version": "1.0.21",
+      "description": "Drops a corpse with your items when you die instead of scattering them."
+    },
+    {
+      "name": "Create",
+      "filename": "create-1.20.1-6.0.6.jar",
+      "version": "0.5.1.f",
+      "description": "Adds mechanical contraptions, automation, and engineering to the game."
+    },
+    {
+      "name": "Create: New Age",
+      "filename": "create-new-age-forge-1.20.1-1.1.4.jar",
+      "version": "1.1.4",
+      "description": "Create addon adding electricity generation and distribution."
+    },
+    {
+      "name": "Create: Addition",
+      "filename": "createaddition-1.20.1-1.3.1.jar",
+      "version": "1.3.1",
+      "description": "Create addon adding motors, generators, and electric tools."
+    },
+    {
+      "name": "Curios API",
+      "filename": "curios-forge-5.14.1+1.20.1.jar",
+      "version": "5.14.1",
+      "description": "Library mod — adds accessory equipment slots used by other mods."
+    },
+    {
+      "name": "Easy Villagers",
+      "filename": "easy-villagers-forge-1.20.1-1.1.29.jar",
+      "version": "1.1.29",
+      "description": "Quality-of-life improvements for managing villagers."
+    },
+    {
+      "name": "Emojiful",
+      "filename": "Emojiful-Forge-1.20.1-4.2.0.jar",
+      "version": "4.2.0",
+      "description": "Adds emoji support in chat."
+    },
+    {
+      "name": "Farmer's Delight",
+      "filename": "FarmersDelight-1.20.1-1.2.8.jar",
+      "version": "1.2.8",
+      "description": "Expands farming and cooking with new crops, tools, and recipes."
+    },
+    {
+      "name": "Fast Leaf Decay",
+      "filename": "FastLeafDecay-32.jar",
+      "version": "32",
+      "description": "Leaves decay much faster after trees are cut down."
+    },
+    {
+      "name": "Framework",
+      "filename": "framework-forge-1.20.1-0.7.15.jar",
+      "version": "0.7.15",
+      "description": "Library mod — required by other mods."
+    },
+    {
+      "name": "GlitchCore",
+      "filename": "GlitchCore-forge-1.20.1-0.0.1.0.jar",
+      "version": "0.0.1.0",
+      "description": "Library mod — required by other mods."
+    },
+    {
+      "name": "Hourglass",
+      "filename": "hourglass-1.20-1.2.1.1.jar",
+      "version": "1.2.1.1",
+      "description": "Lets players control the speed of the day/night cycle."
+    },
+    {
+      "name": "Immersive Paintings",
+      "filename": "immersive_paintings-0.6.8+1.20.1-forge.jar",
+      "version": "0.6.8",
+      "description": "Add custom paintings to your world using any image."
+    },
+    {
+      "name": "Jade",
+      "filename": "Jade-1.20.1-Forge-11.13.1.jar",
+      "version": "11.13.1",
+      "description": "Shows information about blocks and entities when you look at them."
+    },
+    {
+      "name": "JEI — Just Enough Items",
+      "filename": "jei-1.20.1-forge-15.20.0.112.jar",
+      "version": "15.20.0.112",
+      "description": "Browse all items and view crafting recipes in-game."
+    },
+    {
+      "name": "JourneyMap",
+      "filename": "journeymap-1.20.1-5.10.3-forge.jar",
+      "version": "5.10.3",
+      "description": "Minimap and full-screen world map with waypoints."
+    },
+    {
+      "name": "Just Mob Heads",
+      "filename": "justmobheads-1.20.1-8.3.jar",
+      "version": "8.3",
+      "description": "Mobs have a chance to drop their head when killed."
+    },
+    {
+      "name": "Just Player Heads",
+      "filename": "justplayerheads-1.20.1-4.1.jar",
+      "version": "4.1",
+      "description": "Obtain player heads via a simple command."
+    },
+    {
+      "name": "Kotlin for Forge",
+      "filename": "kotlinforforge-4.11.0-all.jar",
+      "version": "4.11.0",
+      "description": "Library mod — Kotlin runtime required by other mods."
+    },
+    {
+      "name": "Player Animation Library",
+      "filename": "player-animation-lib-forge-1.0.2-rc1+1.20.jar",
+      "version": "1.0.2-rc1",
+      "description": "Library mod — enables custom player animations."
+    },
+    {
+      "name": "Player Trade",
+      "filename": "playertrade-1.20.1-b.jar",
+      "version": "beta",
+      "description": "Trade items directly with other players safely."
+    },
+    {
+      "name": "Refurbished Furniture",
+      "filename": "refurbished_furniture-forge-1.20.1-1.0.14.jar",
+      "version": "1.0.14",
+      "description": "Adds a wide variety of decorative furniture blocks."
+    },
+    {
+      "name": "Skin Restorer",
+      "filename": "skinrestorer-2.3.5+1.20-forge.jar",
+      "version": "2.3.5",
+      "description": "Restores player skins when the server is in offline mode."
+    },
+    {
+      "name": "Slice & Dice",
+      "filename": "sliceanddice-forge-3.4.0.jar",
+      "version": "3.4.0",
+      "description": "Integrates Farmer's Delight recipes with Create's mechanical processing."
+    },
+    {
+      "name": "Sophisticated Backpacks",
+      "filename": "sophisticatedbackpacks-1.20.1-3.23.19.1263.jar",
+      "version": "3.23.19.1263",
+      "description": "Upgradeable backpacks with extra inventory and filter upgrades."
+    },
+    {
+      "name": "Sophisticated Core",
+      "filename": "sophisticatedcore-1.20.1-1.2.71.1022.jar",
+      "version": "1.2.71.1022",
+      "description": "Library mod — core for all Sophisticated mods."
+    },
+    {
+      "name": "Sophisticated Storage",
+      "filename": "sophisticatedstorage-1.20.1-1.3.50.1178.jar",
+      "version": "1.3.50.1178",
+      "description": "Advanced, upgradeable barrels and chests with filter and sorting upgrades."
+    },
+    {
+      "name": "Sophisticated Storage: Create Integration",
+      "filename": "sophisticatedstoragecreateintegration-1.20.1-0.1.12.36.jar",
+      "version": "0.1.12.36",
+      "description": "Links Sophisticated Storage with Create's automation systems."
+    },
+    {
+      "name": "Steam 'n' Rails",
+      "filename": "Steam_Rails-1.6.11-alpha+forge-mc1.20.1.jar",
+      "version": "1.6.11-alpha",
+      "description": "Adds trains, rail infrastructure, and steam-powered transport."
+    },
+    {
+      "name": "Super Tools",
+      "filename": "supertools-1.1.1-1.20.1.jar",
+      "version": "1.1.1",
+      "description": "Adds powerful multi-use tools that combine multiple tool functions."
+    },
+    {
+      "name": "TerraBlender",
+      "filename": "TerraBlender-forge-1.20.1-3.0.1.10.jar",
+      "version": "3.0.1.10",
+      "description": "Library mod — required by Biomes O' Plenty for biome generation."
+    },
+    {
+      "name": "Trade Cycling",
+      "filename": "trade-cycling-forge-1.20.1-1.0.18.jar",
+      "version": "1.0.18",
+      "description": "Allows cycling villager trades to find the ones you want."
+    },
+    {
+      "name": "Simple Voice Chat",
+      "filename": "voicechat-forge-1.20.1-2.5.30.jar",
+      "version": "2.5.30",
+      "description": "In-game proximity voice chat."
+    },
+    {
+      "name": "WATut",
+      "filename": "watut-forge-1.20.1-1.2.3.jar",
+      "version": "1.2.3",
+      "description": "In-game tutorial and guide system."
     }
   ]
 }
