@@ -23,8 +23,8 @@
     },
     {
       "name": "Copycats+",
-      "filename": "copycats-3.0.7+mc.1.20.1-forge.jar",
-      "version": "3.0.7",
+      "filename": "copycats-3.0.2+mc.1.20.1-forge.jar",
+      "version": "3.0.2",
       "description": "Adds blocks that copy the appearance of any other block.",
       "added": "2026-05-17"
     },
